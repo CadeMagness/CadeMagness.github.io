@@ -6,6 +6,37 @@
   <title>Cade Magness | Photography & Adventures</title>
   <meta name="description" content="A photography portfolio and blog for my many adventures." />
   <style>
+    .photo {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.88);
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  line-height: 1;
+}
 :root {
   --bg: #f4f1eb;
   --panel: #e7e1d7;
@@ -327,21 +358,21 @@
         </div>
         <div class="grid-3">
           <article class="card">
-            <div class="photo one"></div>
+            <div class="photo one" onclick="openLightbox('images/photo1.jpg')"></div>
             <div class="card-body">
               <h3>Alpine Light</h3>
               <p class="muted">A sample gallery item for landscapes, hikes, and national park shots.</p>
             </div>
           </article>
           <article class="card">
-            <div class="photo two"></div>
+            <div class="photo two" onclick="openLightbox('images/photo2.jpg')"></div>
             <div class="card-body">
               <h3>Open Horizons</h3>
               <p class="muted">Use this section for van life photos, scenic roads, and documentary-style work.</p>
             </div>
           </article>
           <article class="card">
-            <div class="photo three"></div>
+            <div class="photo three" onclick="openLightbox('images/photo3.jpg')"></div>
             <div class="card-body">
               <h3>Quiet Encounters</h3>
               <p class="muted">A place for wildlife, candid moments, and images with a story behind them.</p>
@@ -420,5 +451,19 @@
       <p>© 2026 Cade Magness · Photography & Adventures</p>
     </div>
   </footer>
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="Expanded photo" onclick="event.stopPropagation()">
+</div>
+<script>
+  function openLightbox(imageSrc) {
+    document.getElementById('lightbox-img').src = imageSrc;
+    document.getElementById('lightbox').style.display = 'flex';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+</script>
 </body>
 </html>
