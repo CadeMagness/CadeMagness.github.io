@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cade Magness | Photography & Adventures</title>
+  <meta name="description" content="A photography portfolio and adventure blog by Cade Magness." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1e2430;
+      --text: #f5f7fb;
+      --muted: #b8c0cc;
+      --accent: #d4a24c;
+      --accent-2: #7fb7be;
+      --border: rgba(255,255,255,0.09);
+      --shadow: 0 18px 40px rgba(0,0,0,0.28);
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0d1014 0%, #141925 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(15,17,21,0.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus { color: var(--text); }
+
+    .hero {
+      padding: 5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 { line-height: 1.15; margin: 0 0 1rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.6rem); }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
+    h3 { font-size: 1.15rem; }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 58ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.9rem 1.25rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button.primary {
+      background: var(--accent);
+      color: #17130b;
+    }
+    .button.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(212,162,76,0.14), rgba(127,183,190,0.08));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      background:
+        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.38)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80') center/cover;
+      display: flex;
+      align-items: end;
+      padding: 1rem;
+      color: white;
+      font-weight: 600;
+    }
+
+    section { padding: 2rem 0 4rem; }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .photo {
+      aspect-ratio: 4 / 3;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .photo.one { background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80'); }
+    .photo.two { background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80'); }
+    .photo.three { background-image: url('https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80'); }
+
+    .card-body {
+      padding: 1rem 1rem 1.15rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #1b212a;
+      background: var(--accent-2);
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+      margin-bottom: 0.65rem;
+      font-weight: 700;
+    }
+
+    .blog-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .blog-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1rem;
+      align-items: center;
+    }
+
+    .blog-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .thumb-1 { background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'); }
+    .thumb-2 { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'); }
+    .thumb-3 { background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80'); }
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      background: var(--panel-2);
+      border-radius: 16px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-box {
+      text-align: center;
+      background: linear-gradient(180deg, rgba(127,183,190,0.12), rgba(212,162,76,0.08));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      padding: 2rem 0 3rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-box,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-item {
+        grid-template-columns: 1fr;
+      }
+
+      .stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Cade Magness</div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#adventures">Adventures</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Photography • Travel • Storytelling</div>
+          <h1>Photos from the trail, the road, and everywhere in between.</h1>
+          <p class="lead">
+            This is my space to share photography, field notes, and stories from hikes, road trips,
+            and everyday adventure. Built to feel clean, visual, and easy to update.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#portfolio">View Portfolio</a>
+            <a class="button secondary" href="#adventures">Read the Blog</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-photo">Featured shot from the latest adventure</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Portfolio</h2>
+            <p class="muted">Swap these sample images with your own best work.</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="photo one"></div>
+            <div class="card-body">
+              <span class="tag">Mountains</span>
+              <h3>Alpine Light</h3>
+              <p class="muted">A sample gallery item for landscapes, hikes, and national park shots.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="photo two"></div>
+            <div class="card-body">
+              <span class="tag">Road Trips</span>
+              <h3>Open Horizons</h3>
+              <p class="muted">Use this section for van life photos, scenic roads, and documentary-style work.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="photo three"></div>
+            <div class="card-body">
+              <span class="tag">Wildlife</span>
+              <h3>Quiet Encounters</h3>
+              <p class="muted">A place for wildlife, candid moments, and images with a story behind them.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="adventures">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Recent Adventures</h2>
+            <p class="muted">These can become full blog posts later, or stay as short trip journals.</p>
+          </div>
+        </div>
+        <div class="blog-list">
+          <article class="blog-item">
+            <div class="blog-thumb thumb-1"></div>
+            <div>
+              <p class="eyebrow">Featured Post</p>
+              <h3>Three days on the trail: lessons from carrying less</h3>
+              <p class="muted">A sample post summary for a backpacking trip, route notes, campsite highlights, and reflections from the trail.</p>
+            </div>
+          </article>
+          <article class="blog-item">
+            <div class="blog-thumb thumb-2"></div>
+            <div>
+              <p class="eyebrow">Road Journal</p>
+              <h3>Sunrise, coffee, and a long stretch of backroads</h3>
+              <p class="muted">Use this section for photo essays, road trip recaps, gear notes, or location writeups.</p>
+            </div>
+          </article>
+          <article class="blog-item">
+            <div class="blog-thumb thumb-3"></div>
+            <div>
+              <p class="eyebrow">Field Notes</p>
+              <h3>What I look for before pressing the shutter</h3>
+              <p class="muted">This works well for photography tips, editing notes, or short reflections on the creative process.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-box">
+          <div>
+            <h2>About</h2>
+            <p class="muted">
+              I’m Cade, and this site is part portfolio, part journal. I made it to share photography,
+              travel stories, and the places that keep pulling me back outside.
+            </p>
+            <p class="muted">
+              Over time, this can grow into a full archive with trip reports, gear lists, location pages,
+              and themed galleries.
+            </p>
+          </div>
+          <div>
+            <h3>What this site can grow into</h3>
+            <div class="stats">
+              <div class="stat">
+                <strong>01</strong>
+                <span class="muted">Photography portfolio</span>
+              </div>
+              <div class="stat">
+                <strong>02</strong>
+                <span class="muted">Adventure blog</span>
+              </div>
+              <div class="stat">
+                <strong>03</strong>
+                <span class="muted">Trip planning hub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Get in touch</h2>
+          <p class="muted">Replace this with your real email, Instagram, or contact form later.</p>
+          <p><a class="button primary" href="mailto:you@example.com">Email Me</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Cade Magness · Photography & Adventures</p>
+    </div>
+  </footer>
+</body>
+</html>
